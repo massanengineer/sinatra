@@ -1,0 +1,72 @@
+header {
+  background-color: silver;
+  border-bottom: solid 10px #999999;
+  line-height: 60px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.title {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  
+  font-size: 40px;
+  
+}
+
+
+.memo {
+  width: 570px;
+  height: 330px;
+  background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+
+form {
+  display: inline-block;
+}
+
+
+label {
+  display: block;
+  width: 560px;
+
+}
+
+textarea {
+  width: 460px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.add-buttons {
+  text-align: right;
+}
+
+
+.button {
+  display: block;
+  text-align: center;
+
+    width: 180px;
+    height: 44px;
+    background-color: #d3e8f9;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 auto;
+  
+}
+
+
+footer {
+  background-color: silver;
+  line-height: normal;
+  border-top: solid 10px #999999;
+  padding: 12px;
+}
