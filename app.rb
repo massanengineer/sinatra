@@ -46,11 +46,9 @@ get '/memos/:id' do
 end
 
 post '/memos' do
-  title = params[:title]
-  content = params[:content]
   memos = get_memos(FILE_PATH)
   id = SecureRandom.uuid
-  memos[id] = { 'title' => title, 'content' => content }
+  memos[id] = { 'title' => params[:title], 'content' => params[:content] }
   set_memos(FILE_PATH, memos)
   redirect '/memos'
 end
@@ -63,10 +61,8 @@ get '/memos/:id/edit' do
 end
 
 patch '/memos/:id' do
-  title = params[:title]
-  content = params[:content]
   memos = get_memos(FILE_PATH)
-  memos[params[:id]] = { 'title' => title, 'content' => content }
+  memos[params[:id]] = { 'title' => params[:title], 'content' => params[:content] }
   set_memos(FILE_PATH, memos)
   redirect "/memos/#{params[:id]}"
 end
