@@ -1,0 +1,16 @@
+<div>
+  <a href="/memos">メモ一覧に戻る</a>
+</div>
+<div>
+  <p><%= h(@title) %></p>
+  <p><%= h(@content) %></p>
+</div>
+<div>
+  <form action="/memos/<%= h(params[:id]) %>/edit" method="get">
+    <input type="submit" value="編集" class="button">
+  </form>
+  <form action="/memos/<%= h(params[:id]) %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="削除" class="button">
+  </form>
+</div>
