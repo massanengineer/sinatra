@@ -9,7 +9,7 @@ end
 
 gem 'erb_lint', require: false
 gem 'parser', ' 3.1.2'
+gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'webrick'
-gem 'pg'
