@@ -10,7 +10,7 @@ helpers do
   end
 end
 
-CONNECTION = PG.connect(host: 'localhost', dbname: 'memo', user: 'postgres', password: 'matsuda4645')
+CONNECTION = PG.connect(host: 'localhost', dbname: 'memo', user: '任意のユーザー', password: '任意のパスワード')
 
 def post(title, content)
   CONNECTION.exec_params('INSERT INTO memos (title, content) VALUES ($1, $2)', [title, content])
