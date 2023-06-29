@@ -5,7 +5,7 @@
 ```ruby
 $ git clone https://github.com/massanengineer/sinatra.git
 or
-git clone -b sinatra-test https://github.com/massanengineer/sinatra.git
+git clone -b sinatra-db https://github.com/massanengineer/sinatra.git
 ```
 
 2. gemをインストールする
@@ -31,7 +31,7 @@ CREATE TABLE memos (
 
 4. app.rb内の以下の`user:` `password` を任意の文字、数にする
 ```ruby
-CONNECTION = PG.connect(host: 'localhost', dbname: 'memo', user: '任意のユーザー', password: '任意のパスワード')
+PG.connect(host: 'localhost', dbname: 'memo', user: '任意のユーザー', password: '任意のパスワード')
 ```
 
 

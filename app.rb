@@ -10,27 +10,29 @@ helpers do
   end
 end
 
-CONNECTION = PG.connect(host: 'localhost', dbname: 'memo', user: '任意のユーザー', password: '任意のパスワード')
+def connection
+  @connection ||= PG.connect(host: 'localhost', dbname: 'memo', user: '任意のユーザー', password: '任意のパスワード')
+end
 
 def post(title, content)
-  CONNECTION.exec_params('INSERT INTO memos (title, content) VALUES ($1, $2)', [title, content])
+  connection.exec_params('INSERT INTO memos (title, content) VALUES ($1, $2)', [title, content])
 end
 
-def read(id)
-  result = CONNECTION.exec('SELECT * FROM memos WHERE id = $1', [id])
-  result.values.flatten
+def find_memo(id)
+  result = connection.exec('SELECT * FROM memos WHERE id = $1 LIMIT 1', [id])
+  result.first
 end
 
-def memos
-  CONNECTION.exec('SELECT * FROM memos ORDER BY id')
+def fetch_all_memos
+  connection.exec('SELECT * FROM memos ORDER BY id')
 end
 
 def update(title, content, id)
-  CONNECTION.exec_params('UPDATE memos SET title = $1, content = $2 WHERE id = $3', [title, content, id])
+  connection.exec_params('UPDATE memos SET title = $1, content = $2 WHERE id = $3', [title, content, id])
 end
 
 def delete(id)
-  CONNECTION.exec_params('DELETE FROM memos WHERE id = $1', [id])
+  connection.exec_params('DELETE FROM memos WHERE id = $1', [id])
 end
 
 get '/' do
@@ -38,7 +40,7 @@ get '/' do
 end
 
 get '/memos' do
-  @memos = memos
+  @memos = fetch_all_memos
   erb :index
 end
 
@@ -47,9 +49,9 @@ get '/memos/new' do
 end
 
 get '/memos/:id' do
-  memo = read(params[:id])
-  @title = memo[1]
-  @content = memo[2]
+  memo = find_memo(params[:id])
+  @title = memo['title']
+  @content = memo['content']
   erb :show
 end
 
@@ -61,9 +63,9 @@ post '/memos' do
 end
 
 get '/memos/:id/edit' do
-  memo = read(params[:id])
-  @title = memo[1]
-  @content = memo[2]
+  memo = find_memo(params[:id])
+  @title = memo['title']
+  @content = memo['content']
   erb :edit
 end
 
